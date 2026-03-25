@@ -19,16 +19,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Generate Gradle Wrapper
+      - name: Download gradle-wrapper.jar
         run: |
-          # 安装指定版本的 gradle 并生成 wrapper
-          wget -q https://services.gradle.org/distributions/gradle-8.4-bin.zip -P /tmp
-          unzip -q /tmp/gradle-8.4-bin.zip -d /tmp/gradle
-          /tmp/gradle/gradle-8.4/bin/gradle wrapper --gradle-version 8.4
-          chmod +x gradlew
+          curl -L \
+            "https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar" \
+            -o gradle/wrapper/gradle-wrapper.jar
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --no-daemon
