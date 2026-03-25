@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">整点报时</string>
+    <string name="chime_enabled">报时已开启</string>
+    <string name="chime_disabled">报时已关闭</string>
+</resources>
